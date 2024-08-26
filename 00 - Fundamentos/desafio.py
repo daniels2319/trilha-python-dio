@@ -65,9 +65,6 @@ while True:
     else:
         print("Operação inválida, por favor selecione novamente a operação desejada.")
 
-<<<<<<< HEAD
 # fim do código do Guilherme
-=======
 # fim do código
 # linha de comentário
->>>>>>> 7a9daa98b85a76204ee9843519c4f3b7b61985f6
