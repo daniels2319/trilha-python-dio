@@ -8,3 +8,7 @@ print(nome[10:16])
 print(nome[10:16:2])
 print(nome[:])
 print(nome[::-1])
+
+PI = 3.14159
+
+print(f"Valor de PI: {PI:.2f}")
