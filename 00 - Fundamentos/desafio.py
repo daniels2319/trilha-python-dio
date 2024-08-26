@@ -1,66 +1,59 @@
-menu = """
+# Resolution of the challenge from the DIO - Data Engineer Bootcamp
 
-[d] Depositar
-[s] Sacar
-[e] Extrato
-[q] Sair
+open_menu = """
+    --------------------------------------------------------
+    Terminal FSG4356-GF
 
-=> """
+    Welcome! Please select one of the options below:
+    d - deposit
+    w - withdraw
+    s - bank statement
+    e - end session
 
-saldo = 0
-limite = 500
-extrato = ""
-numero_saques = 0
-LIMITE_SAQUES = 3
+    Please, be advised that this terminal only works with note bills, as it cannot accept or give coins.
+
+    Happy Banking!
+
+    Bank Co.® - All Rights reserved
+    --------------------------------------------------------
+
+Keyboard:
+"""
+
+balance = 0
+transaction_records = []
 
 while True:
 
-    opcao = input(menu)
+    selected_option = input(open_menu)
 
-    if opcao == "d":
-        valor = float(input("Informe o valor do depósito: "))
+    if selected_option == "d":
+        
+        while True:
 
-        if valor > 0:
-            saldo += valor
-            extrato += f"Depósito: R$ {valor:.2f}\n"
-
-        else:
-            print("Operação falhou! O valor informado é inválido.")
-
-    elif opcao == "s":
-        valor = float(input("Informe o valor do saque: "))
-
-        excedeu_saldo = valor > saldo
-
-        excedeu_limite = valor > limite
-
-        excedeu_saques = numero_saques >= LIMITE_SAQUES
-
-        if excedeu_saldo:
-            print("Operação falhou! Você não tem saldo suficiente.")
-
-        elif excedeu_limite:
-            print("Operação falhou! O valor do saque excede o limite.")
-
-        elif excedeu_saques:
-            print("Operação falhou! Número máximo de saques excedido.")
-
-        elif valor > 0:
-            saldo -= valor
-            extrato += f"Saque: R$ {valor:.2f}\n"
-            numero_saques += 1
-
-        else:
-            print("Operação falhou! O valor informado é inválido.")
-
-    elif opcao == "e":
-        print("\n================ EXTRATO ================")
-        print("Não foram realizadas movimentações." if not extrato else extrato)
-        print(f"\nSaldo: R$ {saldo:.2f}")
-        print("==========================================")
-
-    elif opcao == "q":
+            try:
+                deposit = int(input("Please, inform the amount to be deposited: "))
+                print(f'$ {deposit} deposited to your bank account.')
+                transaction_records += deposit
+            
+            except ValueError:
+                print("Invalid amount. Please, provide a valid amount to proceed with the deposit.")
+                continue
+            
+    elif selected_option == "w":
+        withdraw = input("Please, inform the amount to be withdrawed: ")
+    
+    elif selected_option == "e":
+        print("Thank you! Have a nice day!")
         break
-
+    
     else:
-        print("Operação inválida, por favor selecione novamente a operação desejada.")
+        "Invalid option. Please select one of the options above."
+        
+#not isinstance(1, 'int')
+
+#         if withdraw >= 0 and withdraw <= balance:
+#             transaction_records -= deposit
+#         else:
+#             "Invalid option. "
+# # the lines below are being used for tests
