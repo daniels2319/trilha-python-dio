@@ -31,7 +31,7 @@ while True:
     selected_option = input(open_menu)
 
     if selected_option not in valid_options:
-        print(f"\nInvalid option. Please select one of the options above.\n")
+        print(f"\nInvalid option.\n")
         continue
     
     if selected_option == "d":
