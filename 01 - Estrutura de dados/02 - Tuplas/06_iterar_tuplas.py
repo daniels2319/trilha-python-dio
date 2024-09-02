@@ -1,12 +1,12 @@
-carros = (
-    "gol",
-    "celta",
-    "palio",
-)
+carros = ["gol"]
 
-for carro in carros:
-    print(carro)
+print(isinstance(carros, list))
+
+print(type(carros))
+
+# for carro in carros:
+#     print(carro)
 
 
-for indice, carro in enumerate(carros):
-    print(f"{indice}: {carro}")
+# for indice, carro in enumerate(carros):
+#     print(f"{indice}: {carro}")
