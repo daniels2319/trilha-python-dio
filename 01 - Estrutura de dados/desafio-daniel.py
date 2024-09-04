@@ -2,19 +2,18 @@
 
 """
 Challenge: Separate the withdrawal, deposit and bank statement options in functions.
-    - Establish a daily limit of 10 transactions per account. If the user tries to make a transaction after he reached his daily limit, a warning should appear on the screen.
-    - Create two new functions: <create new user> and <create new bank account>. You may create as many additional functions as you like.
-        $ <create new user>
-            * the <create new user> function should contain name, birth date, id, and address.
+    - Establish a daily limit of 10 transactions per account. If the client tries to make a transaction after he reached his daily limit, a warning should appear on the screen.
+    - Create two new functions: <create new client> and <create new bank account>. You may create as many additional functions as you like.
+        $ <create new client>
+            * the <create new client> function should contain name, birth date, id, and address.
             * the address should follow this format: street - neighborhood - city/state code.
-            * two different users cannot have the same id.
-            * one user can have more than one account, but each account should belong to a single user.
+            * two different clients cannot have the same id.
+            * one client can have more than one account, but each account should belong to a single client.
         $ <create new bank account>
-            * should contain agency id, account number and user
+            * should contain agency id, account number and client
             * the agency id is always "0001"
             * the account number is sequential, iniciating at "1".
-            * one user can have more than one account, but each account should belong to a single user.
-
+            * one client can have more than one account, but each account should belong to a single client.
     - ALL OPERATIONS should be created by using functions.
     - the <withdrawal> function should be keyword only; it should return the <current balance> and the <bank statement> variables.
     - the <deposit> function should be positional only; it should also return the <current balance> and the <bank statement> variables.
@@ -22,7 +21,69 @@ Challenge: Separate the withdrawal, deposit and bank statement options in functi
         * also, the bank statement should include the date and time of all transations.
 """
 
-intro = """
+# Importing libraries
+import textwrap
+import time
+
+# Declaring variables
+client_database = dict()
+print(int(time.time()))
+
+class Client:
+    def __init__(self, name, birth_date, id, street, neighborhood, city, state):
+        self.name = name
+        self.birth_date = birth_date
+        self.id = id # id should have 11 digits without dashes, dots or spaces
+        self.street = street
+        self.neighborhood = neighborhood
+        self.city = city
+        self.state = state
+    
+    
+    
+def new_client():
+    print("We'll ")
+
+
+def current_user(id):
+# checks if the user is in the database
+
+    id = input("Please, type your ID to start. It should have 11 digits with no dashes, dots or spaces")
+
+    if id in client_database.keys():
+        print(f"""
+              Welcome back"{client_database[name]}".
+              Your session id is"{client_database[name][:1]}{id}"-"{str(int(time.time()))}
+              """)
+    else:
+
+        while True:                
+            new_client_decision = input(f"ID not found. Would you like to register (y/n)?")
+            
+            if new_client_decision == "y":
+                new_client()
+                break
+            elif new_client_decision == "n":
+                break
+            else:
+                print(f"\nInvalid option.\n")
+                continue
+    
+def new_account():
+    pass
+
+# class Account:
+#     def __init__(self, number):
+#         self.agency_id = "0001"
+#         self.number = number
+#         self.client_id = Client.id
+    
+#     def new_account(self):
+#         pass
+
+def intro():
+    
+    intro = """
     --------------------------------------------------------
     Terminal FSG4356-GF
 
@@ -32,54 +93,67 @@ intro = """
 
     Bank Co.® - All Rights reserved
     --------------------------------------------------------
-"""
+    """
 
-open_menu = """
-Please select one of the options below:
-    d - deposit
-    w - withdrawal
-    s - bank statement
-    e - end session
-"""
-valid_options = ('d','w','s','e')
+    print(textwrap.dedent(intro))
+    
+
+def menu():
+    
+    current_user()
+
+    while True:
+        option = input("""
+        Please select one of the options below:
+            d - deposit
+            w - withdrawal
+            s - bank statement
+            e - end session
+        """)
+
+        if option in ('d','w','s','e'):
+            return option
+        
+        else:
+            print(f"\nInvalid option.\n")
+            continue
+
 balance = 0
 withdrawal_limit = 3
 transaction_limit = 10
 transaction_records = []
 
-print(intro)
+intro()
 
-while True:
+def main():
 
-    selected_option = input(open_menu)
+    option = menu()
 
-    if selected_option not in valid_options:
-        print(f"\nInvalid option.\n")
-        continue
-    
-    if selected_option == "d":
+    if option == "d":
         
         while True:
 
-            try:
-                deposit = int(input("\nPlease, inform the amount to be deposited: \n"))
-                
-                if deposit >= 0:    
-                    
-                    balance += deposit
-                    print(f"\n${deposit}.00 has been deposited into your bank account.\nYour current balance is ${balance}.00\n")
-                    
-                    transaction_records.append(f"Deposit: ${deposit}.00")                                  
-                    break
+            def deposit():
 
-                else:
-                    print(f"\nThe deposit amount must be greater than zero.\n")
-                    break
-                
-            except ValueError:
-                
-                print(f"\nInvalid amount. Please, provide a valid amount to proceed with the deposit.\n")
-                continue
+                try:
+                    deposit = int(input("\nPlease, inform the amount to be deposited: \n"))
+                    
+                    if deposit >= 0:    
+                        
+                        balance += deposit
+                        print(f"\n${deposit}.00 has been deposited into your bank account.\nYour current balance is ${balance}.00\n")
+                        
+                        transaction_records.append(f"Deposit: ${deposit}.00")                                  
+                        break
+
+                    else:
+                        print(f"\nThe deposit amount must be greater than zero.\n")
+                        break
+                    
+                except ValueError:
+                    
+                    print(f"\nInvalid amount. Please, provide a valid amount to proceed with the deposit.\n")
+                    continue
             
     elif selected_option == "w":
         
