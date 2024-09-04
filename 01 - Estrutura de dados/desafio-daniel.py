@@ -42,7 +42,18 @@ class Client:
     
     
 def new_client():
-    print("We'll ")
+    
+    print("We'll register you in our database. Please, do not resist.")
+    
+    id = input("Please, confirm your ID.\nRemember, it should have 11 digits with no dashes, dots or spaces:")
+    name = input("Please, provide your name:")
+    birth_date = input("Please, provide your birth date:")
+    street = input("Please, provide your street:")
+    neighborhood = input("Please, provide your neighborhood:")
+    city = input("Please, provide your city:")
+    state = input("Please, provide your state:")
+
+    Client(name, birth_date, id, street, neighborhood, city, state)
 
 
 def current_user(id):
@@ -122,7 +133,7 @@ balance = 0
 withdrawal_limit = 3
 transaction_limit = 10
 transaction_records = []
-
+5
 intro()
 
 def main():
